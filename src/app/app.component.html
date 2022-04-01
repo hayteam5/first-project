@@ -1,0 +1,10 @@
+<body>
+
+<app-sign-in>
+  [(counter)]="age" (forExample)="onForExample($event)" [title]="expression ? 'one' : 'two'"
+  <button (click)="expression = !expression">{{!expression ? 'one' : 'two'}}</button>
+</app-sign-in>
+<!--<app-sign-up></app-sign-up>-->
+
+
+</body>

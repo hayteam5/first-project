@@ -1,0 +1,24 @@
+<body><br><br><br><br><br><br><br>
+
+<div class="square">
+
+
+  <div id="checkbox">
+    <br>
+    <span class="count"> {{taskCount}} TASKS </span><br>
+    <p *ngFor="let task of taskList; let i = index">
+      <input type="checkbox"> <span class="task">{{task}}</span>
+      <button (click)="deleteTask(i)" class="deleteTaskButton"> Delete</button>
+    </p>
+  </div>
+
+  <p>
+    <br><br>
+    <input type="text" id="taskNameInput" name="taskName" placeholder="Add todo..." [(ngModel)]="newTaskName">
+    <button (click)="addTask(taskList, newTaskName)" class="addTaskButton"> Add</button>
+  </p>
+
+</div>
+</body>
+
+

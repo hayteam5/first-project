@@ -1,0 +1,80 @@
+<div class="square">
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+    <br>
+    <p style="color:maroon;">
+      Input your login and password:
+    </p>
+    <br>
+    <div class="form-group">
+      <label class="form-label" hidden> Login </label>
+      <input type="text"
+             class="form-control"
+             name="login"
+             required
+             minlength="5"
+             maxlength="10"
+             placeholder="Login"
+             ngModel
+             #loginRef="ngModel"
+      />
+      <div *ngIf="loginRef.errors && (loginRef?.invalid || loginRef.pristine)">
+        <div *ngIf="loginRef?.errors?.['required']" class="form-error">
+          <div *ngIf="loginRef.touched" class="form-error">
+            Enter your login, please.
+          </div>
+        </div>
+        <div *ngIf="loginRef?.errors?.['minlength']" class="form-error">
+          Minimum length of login must be 5 characters.
+        </div>
+
+
+      </div>
+      <br><br>
+
+      <div class="form-group">
+        <label class="form-label" hidden> Password </label>
+        <input type="password"
+               class="form-control"
+               name="password"
+               required
+               minlength="6"
+               maxlength="16"
+               placeholder="Password"
+               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+               ngModel
+               #passwordRef="ngModel"
+        />
+        <div *ngIf="passwordRef.errors && (passwordRef?.invalid || passwordRef.pristine)">
+          <div *ngIf="passwordRef?.errors?.['required']" class="form-error">
+            <div *ngIf="passwordRef.touched" class="form-error">
+              Enter your password, please.
+            </div>
+          </div>
+          <div *ngIf="passwordRef?.errors?.['pattern']" class="form-error">
+            Password must be minimum eight characters, at least one uppercase letter, one lowercase letter and one
+            number.
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+    <div *ngIf="(loginRef.valid && passwordRef.valid); then buttonEnabled else buttonDisabled"></div>
+    <ng-template #buttonDisabled><button type="submit" disabled class="disabledButton"> Sign-in </button> </ng-template>
+    <ng-template #buttonEnabled><button type="submit" class="activatedButton"> Sign-in </button> </ng-template>
+
+    <br><br>
+    <button class="notRegisteredButton" type="button"> Not yet registered? </button>
+    <br><br><br>
+  </form>
+
+
+ <!-- <div><br>
+  <button (click)="counterChange.emit(counter - 1)" >-1</button>
+  {{counter}}
+  <button (click)="counterChange.emit(counter + 1)" >+1</button>
+  </div><br>
+
+  <p> {{ title }}</p>
+  <button (click)="onForExample()">For Example</button>-->
+
+</div>
